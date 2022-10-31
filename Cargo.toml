@@ -8,4 +8,5 @@ edition = "2021"
 [dependencies]
 # Error handling
 anyhow = "1.0.66"
+crc = "3.0.0"
 log = "0.4.17"
