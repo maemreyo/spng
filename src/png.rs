@@ -1,5 +1,5 @@
 #![allow(unused)]
-use anyhow::{bail, Ok};
+use anyhow::{bail, Ok, Context};
 use std::convert::TryFrom;
 use crate::chunk::{self, Chunk};
 use crate::chunk_type::ChunkType;
@@ -97,7 +97,8 @@ impl TryFrom<&[u8]> for Png {
                 bail!("Not valid chunk")
             }
 
-            let chunk: Chunk = Chunk::try_from(&bytes[offset..offset + 4 + 4 + len + 4])?;
+            let chunk = Chunk::try_from(&bytes[offset..offset + 4 + 4 + len + 4])
+                .with_context(|| format!("Failed to read instrs from {}", offset))?;
             chunks.push(chunk);
 
             offset += 4 + 4 + len + 4;
