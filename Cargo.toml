@@ -8,5 +8,10 @@ edition = "2021"
 [dependencies]
 # Error handling
 anyhow = "1.0.66"
+# Parse command line args
+clap = { version = "4.0.18", features = ["derive"]}
+# Encoding algorithm
 crc = "3.0.0"
+env_logger = "0.9.1"
+# Logging
 log = "0.4.17"
